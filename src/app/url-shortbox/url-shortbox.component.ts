@@ -11,6 +11,7 @@ export class UrlShortboxComponent implements OnInit {
   urlShortForm;
  getUrlData;
  listurl;
+ errorflag:boolean=false;
   constructor(private urlshortservice: UrlShortnerService) {
     this.urlShortForm = new FormGroup({
       'longurl': new FormControl('', Validators.required),
@@ -37,8 +38,18 @@ getAllurls()
      
       this.urlshortservice.generateURLShortner(this.urlShortForm.value).subscribe((data) => {
         console.log(data);
-        this.getUrlData=data;       
-        this.getAllurls();
+        if(data.message=="oops! url is invalid")
+        {
+          this.getUrlData={};
+          alert("Enter a valid url")
+          this.errorflag=true;
+        }
+        else
+        {
+          this.getUrlData=data;       
+          this.getAllurls();
+        }
+        
       })
 
       
