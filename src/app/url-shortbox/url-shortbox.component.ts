@@ -36,7 +36,7 @@ getAllurls()
     if (this.urlShortForm.valid) {
      
       this.urlshortservice.generateURLShortner(this.urlShortForm.value).subscribe((data) => {
-             
+        console.log(data);
         this.getUrlData=data;       
         this.getAllurls();
       })
