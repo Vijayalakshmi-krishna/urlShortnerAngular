@@ -6,9 +6,9 @@
                 <label for="" class="text-secondary"><b>Paste the URL to be Shortened</b></label>                          
                 <input type="text" placeholder="Paste Your URL Here" class="form-control" formControlName="longurl">
 
-                <div *ngIf="longurl.touched && longurl.invalid" class="alert alert-danger">
-                    <div *ngIf="longurl.errors.required">URL is required.</div>
-                    <div *ngIf="longurl.errors.pattern">Please enter valid url.</div>
+                <div *ngIf="urlShortForm.get('longurl').touched && urlShortForm.get('longurl').invalid" class="alert alert-danger">
+                    <div *ngIf="urlShortForm.get('longurl').errors.required">URL is required.</div>
+                    <div *ngIf="urlShortForm.get('longurl').errors.pattern">Please enter valid url.</div>
                 </div>
 
             </div> 
