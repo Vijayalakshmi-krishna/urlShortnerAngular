@@ -38,17 +38,9 @@ getAllurls()
      
       this.urlshortservice.generateURLShortner(this.urlShortForm.value).subscribe((data) => {
         console.log(data);
-        if(data.message=="oops! url is invalid")
-        {
-         // this.getUrlData={};
-          alert("Enter a valid url")
-          this.errorflag=true;
-        }
-        else
-        {
-          this.getUrlData=data;       
-          this.getAllurls();
-        }
+        this.getUrlData=data;       
+        this.getAllurls();
+        
         
       })
 
