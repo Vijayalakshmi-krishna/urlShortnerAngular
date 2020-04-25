@@ -10,18 +10,17 @@ export class UrlShortnerService {
 
   generateURLShortner(data):Observable<any>
   {
-    return this.http.post('http://localhost:3000/generateURL',data);
+    return this.http.post('https://url-shortner-nodejs.herokuapp.com/generateURL',data);
   }
 
   getAllUrlData():Observable<any>
   {
-    return this.http.get('http://localhost:3000/getallurl');
+    return this.http.get('https://url-shortner-nodejs.herokuapp.com/getallurl');
   }
 
   getURLShort(shorturl):Observable<any>
   {
-    console.log("in service");
-    console.log(shorturl);
-    return this.http.get('http://localhost:3000/redirecturl/'+shorturl);
+    
+    return this.http.get('https://url-shortner-nodejs.herokuapp.com/redirecturl/'+shorturl);
   }
 }
