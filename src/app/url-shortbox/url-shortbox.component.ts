@@ -40,7 +40,7 @@ getAllurls()
         console.log(data);
         if(data.message=="oops! url is invalid")
         {
-          this.getUrlData={};
+         // this.getUrlData={};
           alert("Enter a valid url")
           this.errorflag=true;
         }
