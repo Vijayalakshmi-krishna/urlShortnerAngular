@@ -12,9 +12,10 @@ export class UrlShortboxComponent implements OnInit {
  getUrlData;
  listurl;
  errorflag:boolean=false;
+  reg:string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   constructor(private urlshortservice: UrlShortnerService) {
     this.urlShortForm = new FormGroup({
-      'longurl': new FormControl('', Validators.required),
+      'longurl': new FormControl('', [Validators.required,Validators.pattern(this.reg)]),
       'description':new FormControl('',Validators.required),
       'shorturl':new FormControl()
     }) 
@@ -37,7 +38,9 @@ getAllurls()
     if (this.urlShortForm.valid) {
      
       this.urlshortservice.generateURLShortner(this.urlShortForm.value).subscribe((data) => {
-        console.log(data);
+
+        
+        console.log(data.message);
         this.getUrlData=data;       
         this.getAllurls();
         

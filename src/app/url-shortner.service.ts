@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 })
 export class UrlShortnerService {
 
+  
   constructor(private http:HttpClient) { }
 
   generateURLShortner(data):Observable<any>
