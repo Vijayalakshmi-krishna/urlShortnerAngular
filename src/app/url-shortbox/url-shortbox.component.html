@@ -43,7 +43,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let url of listurl">
-                <td>{{url.longurl}}</td> 
+                <td width="50%">{{url.longurl}}</td> 
                 <td><a href="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}" (click)="redirecturl(url.shorturl)" target="_blank" crossorigin="anonymous">https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}</a></td>   
                 <td>{{url.description}}</td>        
                 
