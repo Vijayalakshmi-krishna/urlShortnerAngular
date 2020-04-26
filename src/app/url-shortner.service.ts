@@ -22,6 +22,6 @@ export class UrlShortnerService {
   getURLShort(shorturl):Observable<any>
   {
     
-    return this.http.get('https://url-shortner-nodejs.herokuapp.com/redirecturl/'+shorturl);
+    return this.http.put('https://url-shortner-nodejs.herokuapp.com/redirecturl/'+shorturl,shorturl);
   }
 }
