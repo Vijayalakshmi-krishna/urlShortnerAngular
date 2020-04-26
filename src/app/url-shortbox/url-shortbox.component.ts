@@ -52,13 +52,13 @@ getAllurls()
   
   }
 
-  redirecturl(shorturlid)
+  /*redirecturl(shorturlid)
   {
     this.urlshortservice.getURLShort(shorturlid).subscribe((data)=>{    
      // this.getAllurls();
       //window.location.href = data.longurl;
     })
-  }
+  }*/
 
   
 
