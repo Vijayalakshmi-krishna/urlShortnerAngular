@@ -42,7 +42,7 @@ getAllurls()
         
         console.log(data.message);
         this.getUrlData=data;       
-        //this.getAllurls();
+        this.getAllurls();
         
         
       })
@@ -55,7 +55,7 @@ getAllurls()
   redirecturl(shorturlid)
   {
     this.urlshortservice.getURLShort(shorturlid).subscribe((data)=>{    
-      this.getAllurls();
+     // this.getAllurls();
       //window.location.href = data.longurl;
     })
   }
