@@ -1,63 +1,80 @@
 <div class="container">
-    <form [formGroup]="urlShortForm" (submit)="sendData()">
-        <h1 class="text-primary">URL SHORTNER</h1>
-        <div class="row">      
-            <div class="col-lg-6">
-                <label for="" class="text-secondary"><b>Paste the URL to be Shortened</b></label>                          
-                <input type="text" placeholder="Paste Your URL Here" class="form-control" formControlName="longurl">
+  <form [formGroup]="urlShortForm" (submit)="sendData()">
+    <h1 class="text-primary">URL SHORTNER</h1>
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="" class="text-secondary"><b>Paste the URL to be Shortened</b></label>
+        <input type="text" placeholder="Paste Your URL Here" class="form-control" formControlName="longurl">
 
-                <div *ngIf="urlShortForm.get('longurl').touched && urlShortForm.get('longurl').invalid" class="alert alert-danger">
-                    <div *ngIf="urlShortForm.get('longurl').errors.required">URL is required.</div>
-                    <div *ngIf="urlShortForm.get('longurl').errors.pattern">Please enter valid url.</div>
-                </div>
-
-            </div> 
-        </div>
-        
-        <div class="row">
-            <div class="col-lg-6">
-                <label for="" class="text-secondary"><b>Description</b></label>            
-                <input type="text" class="form-control" formControlName="description">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <label for="" class="text-secondary"><b>Short URL</b></label>            
-                <input type="text" class="form-control" formControlName="shorturl" value="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{getUrlData?.shorturl}}" readonly>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <input type="submit" [disabled]="!urlShortForm.valid"  class="btn btn-primary" value="Submit">
-            </div>
+        <div *ngIf="urlShortForm.get('longurl').touched && urlShortForm.get('longurl').invalid"
+          class="alert alert-danger">
+          <div *ngIf="urlShortForm.get('longurl').errors.required">URL is required.</div>
+          <div *ngIf="urlShortForm.get('longurl').errors.pattern">Please enter valid url.</div>
         </div>
 
-        
-    </form>
+      </div>
     </div>
 
-    <hr>
-    
-    <div class="container">
-        <table class="table table-hover">
-            <thead class="thead-dark">
-              <tr>       
-                <th>Longurl</th>
-                <th>Shorlurl</th>
-                <th>Description</th> 
-                <th>count</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let url of listurl">
-                <td width="50%">{{url.longurl}}</td> 
-                <td><a href="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}" target="_blank" crossorigin="anonymous">https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}</a></td>   
-                <td>{{url.description}}</td>
-                <td>{{url.clickcount}}</td>
-                
-              </tr>
-              
-            </tbody>
-          </table>
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="" class="text-secondary"><b>Description</b></label>
+        <input type="text" class="form-control" formControlName="description">
+      </div>
     </div>
-    
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="" class="text-secondary"><b>Short URL</b></label>
+        <input type="text" class="form-control" formControlName="shorturl"
+          value="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{getUrlData?.shorturl}}" readonly>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <span class="float-right"><input type="submit" [disabled]="!urlShortForm.valid" class="btn btn-primary"
+            value="Create"></span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<hr>
+
+<div class="container" *ngFor="let url of listurl">
+  <div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}" target="_blank"
+          crossorigin="anonymous" #userinput>https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}
+        </a>
+       <a href="#exampleModal" (click)="copyMessage(url.shorturl)" data-toggle="modal"><i class="fa fa-copy"></i></a>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-primary" id="exampleModalLabel">Copy URL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-primary">
+                Url Copied successfully!
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <span class="float-right">  <a href="#" (click)="DeleteData(url.shorturl)"><i class="fa fa-trash"></i></a></span>
+      </h5>
+      <p class="card-text">{{url.description}}</p>
+      <p class="card-text">{{url.longurl}}</p>
+      <span class="float-right"> <p class="card-text">{{url.clickcount}}
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </p></span>      
+    </div>
+  </div>
+</div>
