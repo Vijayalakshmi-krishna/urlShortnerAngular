@@ -22,7 +22,7 @@ export class UrlShortnerService {
   getURLShort(shorturl):Observable<any>
   {
     
-    return this.http.get('https://url-shortner-nodejs.herokuapp.com/'+shorturl);
+    return this.http.get('https://url-shortner-nodejs.herokuapp.com/redirecturl/'+shorturl);
   }
 
   deleteURL(shorturlid):Observable<any>
