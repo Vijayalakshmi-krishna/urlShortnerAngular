@@ -25,7 +25,7 @@
       <div class="col-lg-6">
         <label for="" class="text-secondary"><b>Short URL</b></label>
         <input type="text" class="form-control" formControlName="shorturl"
-          value="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{getUrlData?.shorturl}}" readonly>
+          value="https://url-shortner-nodejs.herokuapp.com/{{getUrlData?.shorturl}}" readonly>
       </div>
     </div>
     <div class="row">
@@ -43,8 +43,8 @@
   <div class="card w-75">
     <div class="card-body">
       <h5 class="card-title">
-        <a href="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}" target="_blank"
-          crossorigin="anonymous" #userinput>https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url.shorturl}}
+        <a href="https://url-shortner-nodejs.herokuapp.com/{{url.shorturl}}" target="_blank"
+          crossorigin="anonymous" #userinput>https://url-shortner-nodejs.herokuapp.com/{{url.shorturl}}
         </a>
        <a href="#exampleModal" (click)="copyMessage(url.shorturl)" data-toggle="modal"><i class="fa fa-copy"></i></a>
 
