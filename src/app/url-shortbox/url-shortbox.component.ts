@@ -11,11 +11,15 @@ export class UrlShortboxComponent implements OnInit {
   urlShortForm;
   getUrlData;
   listurl;
-
+  
   errorflag: boolean = false;
   //reg:string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'; 
+
+  
   reg: string = '(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]';
   constructor(private urlshortservice: UrlShortnerService) {
+
+    
     this.urlShortForm = new FormGroup({
       'longurl': new FormControl('', [Validators.required, Validators.pattern(this.reg)]),
       'description': new FormControl('', Validators.required),
@@ -30,6 +34,7 @@ export class UrlShortboxComponent implements OnInit {
   }
 
   getAllurls() {
+
     this.urlshortservice.getAllUrlData().subscribe((data) => {
       this.listurl = data;
 
@@ -37,14 +42,16 @@ export class UrlShortboxComponent implements OnInit {
   }
   sendData() {
     if (this.urlShortForm.valid) {
-
+      
+      this.urlShortForm.value.longurl = (this.urlShortForm.value.longurl.indexOf('://') === -1) ? 'http://' + this.urlShortForm.value.longurl : this.urlShortForm.value.longurl;
+      
       this.urlshortservice.generateURLShortner(this.urlShortForm.value).subscribe((data) => {
 
 
         console.log(data.message);
         this.getUrlData = data;
         this.getAllurls();
-
+       // this.resetformfield();
 
       })
 
@@ -74,6 +81,11 @@ export class UrlShortboxComponent implements OnInit {
     this.urlshortservice.deleteURL(shorturlid).subscribe((data) => {
       this.getAllurls();
     })
+  }
+
+  resetformfield()
+  {
+    this.urlShortForm.value={};
   }
 }
 

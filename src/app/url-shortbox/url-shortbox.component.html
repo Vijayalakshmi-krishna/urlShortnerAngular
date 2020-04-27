@@ -1,11 +1,12 @@
 <div class="container">
-  <form [formGroup]="urlShortForm" (submit)="sendData()">
+  <form #urlform [formGroup]="urlShortForm" (submit)="sendData();urlform.reset()">
     <h1 class="text-primary">URL SHORTNER</h1>
     <div class="row">
       <div class="col-lg-6">
+        <!-- longurl field -->
         <label for="" class="text-secondary"><b>Paste the URL to be Shortened</b></label>
         <input type="text" placeholder="Paste Your URL Here" class="form-control" formControlName="longurl">
-
+        <!-- longurl validation -->
         <div *ngIf="urlShortForm.get('longurl').touched && urlShortForm.get('longurl').invalid"
           class="alert alert-danger">
           <div *ngIf="urlShortForm.get('longurl').errors.required">URL is required.</div>
@@ -14,13 +15,14 @@
 
       </div>
     </div>
-
+    <!-- description field -->
     <div class="row">
       <div class="col-lg-6">
         <label for="" class="text-secondary"><b>Description</b></label>
         <input type="text" class="form-control" formControlName="description">
       </div>
     </div>
+    <!-- short url field readonly -->
     <div class="row">
       <div class="col-lg-6">
         <label for="" class="text-secondary"><b>Short URL</b></label>
@@ -28,6 +30,7 @@
           value="https://url-shortner-nodejs.herokuapp.com/{{getUrlData?.shorturl}}" readonly>
       </div>
     </div>
+    <!-- submit button -->
     <div class="row">
       <div class="col-lg-6">
         <span class="float-right"><input type="submit" [disabled]="!urlShortForm.valid" class="btn btn-primary"
@@ -43,11 +46,22 @@
   <div class="card w-75">
     <div class="card-body">
       <h5 class="card-title">
+        <!-- shorturl link -->
         <a href="https://url-shortner-nodejs.herokuapp.com/{{url?.shorturl}}" target="_blank"
           crossorigin="anonymous">https://url-shortner-nodejs.herokuapp.com/{{url?.shorturl}}
         </a>
-       <a href="#copyModal" (click)="copyMessage(url?.shorturl)" data-toggle="modal"><i class="fa fa-copy"></i></a>
+        <!-- trash icon -->
+        <span class="float-right">  <a href="#" (click)="DeleteData(url?.shorturl)"><i class="fa fa-trash"></i></a></span>
 
+        <!-- copy icon -->
+        <span class="float-right">
+       <a href="#copyModal" style = "margin-right:15px" (click)="copyMessage(url?.shorturl)" data-toggle="modal">       
+        
+          <i class="fa fa-copy"></i>        
+        </a>
+        </span>
+
+        <!-- modal pop up when copy icon clicked -->
         <div class="modal fade" id="copyModal" tabindex="-1" role="dialog" aria-labelledby="copyModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -68,10 +82,13 @@
           </div>
         </div>
        
-        <span class="float-right">  <a href="#" (click)="DeleteData(url?.shorturl)"><i class="fa fa-trash"></i></a></span>
+        
       </h5>
+      <!-- description -->
       <p class="card-text">{{url?.description}}</p>
+      <!-- longurl -->
       <p class="card-text">{{url?.longurl}}</p>
+      <!-- clickcount and eye icon -->
       <span class="float-right"> <p class="card-text">{{url?.clickcount}}
         <i class="fa fa-eye" aria-hidden="true"></i>
       </p></span>      
