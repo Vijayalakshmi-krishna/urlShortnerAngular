@@ -25,7 +25,7 @@
       <div class="col-lg-6">
         <label for="" class="text-secondary"><b>Short URL</b></label>
         <input type="text" class="form-control" formControlName="shorturl"
-          value="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{getUrlData?.shorturl}}" readonly>
+          value="https://url-shortner-nodejs.herokuapp.com/{{getUrlData?.shorturl}}" readonly>
       </div>
     </div>
     <div class="row">
@@ -43,17 +43,17 @@
   <div class="card w-75">
     <div class="card-body">
       <h5 class="card-title">
-        <a href="https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url?.shorturl}}" target="_blank"
-          crossorigin="anonymous" #userinput>https://url-shortner-nodejs.herokuapp.com/redirecturl/{{url?.shorturl}}
+        <a href="https://url-shortner-nodejs.herokuapp.com/{{url?.shorturl}}" target="_blank"
+          crossorigin="anonymous">https://url-shortner-nodejs.herokuapp.com/{{url?.shorturl}}
         </a>
-       <a href="#exampleModal" (click)="copyMessage(url?.shorturl)" data-toggle="modal"><i class="fa fa-copy"></i></a>
+       <a href="#copyModal" (click)="copyMessage(url?.shorturl)" data-toggle="modal"><i class="fa fa-copy"></i></a>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="copyModal" tabindex="-1" role="dialog" aria-labelledby="copyModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-primary" id="exampleModalLabel">Copy URL</h5>
+                <h5 class="modal-title text-primary" id="copyModalLabel">Copy URL</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

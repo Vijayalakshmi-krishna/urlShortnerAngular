@@ -52,17 +52,10 @@ export class UrlShortboxComponent implements OnInit {
     }
 
   }
-
-  /*redirecturl(shorturlid)
-  {
-    this.urlshortservice.getURLShort(shorturlid).subscribe((data)=>{    
-     // this.getAllurls();
-      //window.location.href = data.longurl;
-    })
-  }*/
+  
   copyMessage(val: any) {
 
-    let new_val = 'https://url-shortner-nodejs.herokuapp.com/redirecturl/' + val
+    let new_val = 'https://url-shortner-nodejs.herokuapp.com/' + val
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
